@@ -1,0 +1,206 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Transform": "AWS::Serverless-2016-10-31",
+  "Description": "An AWS Serverless Application.",
+  "Resources": {
+    "PostList": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "todo-lambdas::todo_lambdas.Functions::PostList",
+        "Runtime": "dotnetcore3.1",
+        "CodeUri": "",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": "arn:aws:iam::143009068580:role/LambdaRole",
+        "Policies": [
+          "AWSLambdaBasicExecutionRole"
+        ],
+        "Events": {
+          "RootGet": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/list",
+              "Method": "POST"
+            }
+          }
+        }
+      }
+    },
+
+    "PutList": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "todo-lambdas::todo_lambdas.Functions::PutList",
+        "Runtime": "dotnetcore3.1",
+        "CodeUri": "",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": "arn:aws:iam::143009068580:role/LambdaRole",
+        "Policies": [
+          "AWSLambdaBasicExecutionRole"
+        ],
+        "Events": {
+          "RootGet": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/list",
+              "Method": "PUT"
+            }
+          }
+        }
+      }
+    },
+
+    "DeleteList": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "todo-lambdas::todo_lambdas.Functions::DeleteList",
+        "Runtime": "dotnetcore3.1",
+        "CodeUri": "",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": "arn:aws:iam::143009068580:role/LambdaRole",
+        "Policies": [
+          "AWSLambdaBasicExecutionRole"
+        ],
+        "Events": {
+          "RootGet": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/list/{list-id}",
+              "Method": "DELETE"
+            }
+          }
+        }
+      }
+    },
+
+    "GetLists": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "todo-lambdas::todo_lambdas.Functions::GetLists",
+        "Runtime": "dotnetcore3.1",
+        "CodeUri": "",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": "arn:aws:iam::143009068580:role/LambdaRole",
+        "Policies": [
+          "AWSLambdaBasicExecutionRole"
+        ],
+        "Events": {
+          "RootGet": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/list",
+              "Method": "GET"
+            }
+          }
+        }
+      }
+    },
+
+    "PostItem": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "todo-lambdas::todo_lambdas.Functions::PostItem",
+        "Runtime": "dotnetcore3.1",
+        "CodeUri": "",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": "arn:aws:iam::143009068580:role/LambdaRole",
+        "Policies": [
+          "AWSLambdaBasicExecutionRole"
+        ],
+        "Events": {
+          "RootGet": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/list/{list-id}/item",
+              "Method": "POST"
+            }
+          }
+        }
+      }
+    },
+
+    "GetItems": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "todo-lambdas::todo_lambdas.Functions::GetItems",
+        "Runtime": "dotnetcore3.1",
+        "CodeUri": "",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": "arn:aws:iam::143009068580:role/LambdaRole",
+        "Policies": [
+          "AWSLambdaBasicExecutionRole"
+        ],
+        "Events": {
+          "RootGet": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/list/{list-id}/item",
+              "Method": "GET"
+            }
+          }
+        }
+      }
+    },
+
+    "PutItem": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "todo-lambdas::todo_lambdas.Functions::PutItem",
+        "Runtime": "dotnetcore3.1",
+        "CodeUri": "",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": "arn:aws:iam::143009068580:role/LambdaRole",
+        "Policies": [
+          "AWSLambdaBasicExecutionRole"
+        ],
+        "Events": {
+          "RootGet": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/list/{list-id}/item",
+              "Method": "PUT"
+            }
+          }
+        }
+      }
+    },
+
+    "DeleteItem": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "todo-lambdas::todo_lambdas.Functions::DeleteItem",
+        "Runtime": "dotnetcore3.1",
+        "CodeUri": "",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": "arn:aws:iam::143009068580:role/LambdaRole",
+        "Policies": [
+          "AWSLambdaBasicExecutionRole"
+        ],
+        "Events": {
+          "RootGet": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/list/{list-id}/item/{item-id}",
+              "Method": "DELETE"
+            }
+          }
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "ApiURL": {
+      "Description": "API endpoint URL for Prod environment",
+      "Value": {
+        "Fn::Sub": "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+      }
+    }
+  }
+}
